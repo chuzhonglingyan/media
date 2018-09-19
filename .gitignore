@@ -158,3 +158,5 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 将删除 app/libs/
+将删除 app/src/androidTest/java/com/yuntian/mediademo/
+将删除 app/src/test/java/com/yuntian/mediademo/

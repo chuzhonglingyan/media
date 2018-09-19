@@ -1,4 +1,4 @@
-package com.yuntian.ndkdemo;
+package com.yuntian.mediademo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

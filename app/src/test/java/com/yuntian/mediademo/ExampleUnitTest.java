@@ -1,4 +1,4 @@
-package com.yuntian.ndkdemo;
+package com.yuntian.mediademo;
 
 import org.junit.Test;
 
