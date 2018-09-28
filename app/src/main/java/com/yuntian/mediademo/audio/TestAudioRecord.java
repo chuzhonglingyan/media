@@ -31,7 +31,7 @@ public class TestAudioRecord {
     // 通道数的配置，可选的值以常量的形式定义在 AudioFormat 类中，常用的是 CHANNEL_IN_MONO（单通道），CHANNEL_IN_STEREO（双通道）
 
 
-    //audioFormat
+    //audioFormat 音频采样精度，指定采样的数据的格式和每次采样的大小
     //这个参数是用来配置“数据位宽”的，可选的值也是以常量的形式定义在 AudioFormat 类中，常用的是 ENCODING_PCM_16BIT（16bit），ENCODING_PCM_8BIT（8bit），注意，前者是可以保证兼容所有Android手机的。
 
 

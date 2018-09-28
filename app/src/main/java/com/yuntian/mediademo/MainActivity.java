@@ -1,16 +1,19 @@
 package com.yuntian.mediademo;
 
 import android.Manifest;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.PathUtils;
 import com.mylhyl.acp.Acp;
 import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 import com.yuntian.mediademo.audio.AudioRecordManager;
+import com.yuntian.mediademo.audio.AudioTrackUtil;
+import com.yuntian.mediademo.util.FileUtil;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -27,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TextView tvShowTime;
+    private TextView tvPlayTime;
     private AudioRecordManager audioRecordManager;
+    private AudioTrackUtil audioTrackUtil;
 
     private static SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 
@@ -48,14 +53,21 @@ public class MainActivity extends AppCompatActivity {
         TextView tvAudioRecord = findViewById(R.id.tv_audio_record);
         TextView tvStopAudioRecord = findViewById(R.id.tv_stop_audio_record);
         TextView tv_save = findViewById(R.id.tv_save);
-        tvShowTime = findViewById(R.id.tv_show_time);
+
+
+        TextView tvAudioPlay = findViewById(R.id.tv_audio_play);
+        TextView tvStopAudioplay = findViewById(R.id.tv_stop_audio_play);
+         tvPlayTime = findViewById(R.id.tv_play_time);
+
+
+        tvShowTime = findViewById(R.id.tv_record_time);
 
         right();
 
-        String path = getCacheDir().getAbsolutePath() + File.separator + getCurrentTimeStr() + "-audioRecord";
+
         tvAudioRecord.setOnClickListener((v) -> {
             if (audioRecordManager != null) {
-                audioRecordManager.startRecord(path);
+                audioRecordManager.startRecord();
                 Toast.makeText(getApplicationContext(), "录音开始", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "录音还未初始化", Toast.LENGTH_SHORT).show();
@@ -69,7 +81,20 @@ public class MainActivity extends AppCompatActivity {
         });
         tv_save.setOnClickListener((v) -> {
             if (audioRecordManager != null) {
-                audioRecordManager.makePCMFileToWAVFile();
+                audioRecordManager.saveRecord();
+            }
+        });
+
+        tvAudioPlay.setOnClickListener((v) -> {
+            if (audioTrackUtil != null) {
+                audioTrackUtil.play(PathUtils.getExternalAppAlarmsPath() + File.separator +"20180928235408.pcm");
+            }
+        });
+
+
+        tvStopAudioplay.setOnClickListener((v) -> {
+            if (audioRecordManager != null) {
+                audioTrackUtil.pause();
             }
         });
 
@@ -93,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onGranted() {
                         audioRecordManager = AudioRecordManager.newInstance();
+                        audioTrackUtil =new AudioTrackUtil();
 
                         if (audioRecordManager != null) {
                             audioRecordManager.setTimeInterface(new AudioRecordManager.TimeInterface() {
@@ -102,6 +128,16 @@ public class MainActivity extends AppCompatActivity {
                                     String mm = new DecimalFormat("00").format(time % 3600 / 60);
                                     String ss = new DecimalFormat("00").format(time % 60);
                                     tvShowTime.setText(hh + ":" + mm + ":" + ss);
+                                }
+                            });
+
+                            audioTrackUtil.setTimeInterface(new AudioRecordManager.TimeInterface() {
+                                @Override
+                                public void showTime(long time) {
+                                    String hh = new DecimalFormat("00").format(time / 3600);
+                                    String mm = new DecimalFormat("00").format(time % 3600 / 60);
+                                    String ss = new DecimalFormat("00").format(time % 60);
+                                    tvPlayTime.setText(hh + ":" + mm + ":" + ss);
                                 }
                             });
                         }
@@ -122,7 +158,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        audioRecordManager.stopRecord();
+        if (audioRecordManager!=null){
+            audioRecordManager.onDestroy();
+
+        }
+        if (audioTrackUtil!=null){
+            audioTrackUtil.onDestory();
+
+        }
     }
 
 

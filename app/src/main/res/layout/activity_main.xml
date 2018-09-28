@@ -7,58 +7,115 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/sample_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_audio_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="20dp"
+            android:text="开始录音"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_stop_audio_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="20dp"
+            android:text="停止录音"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 
     <TextView
-        android:id="@+id/tv_audio_record"
+        android:id="@+id/tv_record_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:padding="20dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_light"
-        android:text="开始录音" />
-
-
-
-    <TextView
-        android:id="@+id/tv_stop_audio_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
         android:padding="20dp"
-        android:background="@android:color/holo_blue_light"
-        android:layout_marginTop="20dp"
-        android:text="停止录音" />
-
-    <TextView
-        android:id="@+id/tv_show_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:text="00:00:00"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:padding="20dp"
-        android:background="@android:color/holo_blue_light"
-        android:layout_marginTop="20dp"
-        android:text="00:00:00" />
+        android:textSize="14sp" />
 
 
     <TextView
         android:id="@+id/tv_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:padding="20dp"
-        android:background="@android:color/holo_blue_light"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="保持" />
+        android:background="@android:color/holo_blue_light"
+        android:padding="20dp"
+        android:text="完成"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_audio_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="20dp"
+            android:text="开始播音"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_stop_audio_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/holo_blue_light"
+            android:padding="20dp"
+            android:text="停止播音"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_play_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_light"
+        android:padding="20dp"
+        android:text="00:00:00"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
 
 </LinearLayout>
