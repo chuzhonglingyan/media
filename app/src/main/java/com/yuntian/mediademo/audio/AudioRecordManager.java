@@ -221,18 +221,20 @@ public class AudioRecordManager {
                             handlerTimer.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    currentTime = currentTime + 1;
-                                    if (timeInterface != null) {
-                                        timeInterface.showTime(currentTime);
-                                    }
                                     isTimeStart = true;
+                                    if (isRecording) {
+                                        currentTime = currentTime + 1;
+                                        if (timeInterface != null) {
+                                            timeInterface.showTime(currentTime);
+                                        }
 
-                                    if (currentTime >= MAXRECORDTIME) {
-                                        currentTime = MAXRECORDTIME;
-                                        isTimeStart = false;
-                                        isRecording = false;
-                                        Log.e("AudioRecorder", "超过最大录制时间:" + MAXRECORDTIME + "秒");
-                                        //saveRecord();
+                                        if (currentTime >= MAXRECORDTIME) {
+                                            currentTime = MAXRECORDTIME;
+                                            isTimeStart = false;
+                                            isRecording = false;
+                                            Log.e("AudioRecorder", "超过最大录制时间:" + MAXRECORDTIME + "秒");
+                                            //saveRecord();
+                                        }
                                     }
                                 }
                             }, 1000);
@@ -315,15 +317,16 @@ public class AudioRecordManager {
         }
         if (isSave) {
             isSave = false;
+            isRecording = false;
+
             new Thread(() -> {
                 if (PcmToWavUtil.makePCMFileToWAVFile(filePath, getWavFilePath(), true)) {
                     Log.e("AudioRecorder", "保存成功");
                     //操作成功
                     isSave = true;
 
-                    isRecording = false;
-                    currentTime = 0;
                     filePath = "";
+                    currentTime = 0;
 
                     handlerTimer.post(new Runnable() {
                         @Override

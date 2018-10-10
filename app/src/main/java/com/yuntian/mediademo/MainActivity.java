@@ -34,13 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private AudioRecordManager audioRecordManager;
     private AudioTrackUtil audioTrackUtil;
 
-    private static SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-
-    public static String getCurrentTimeStr() {
-        long starttime = System.currentTimeMillis();
-        String datetime = df.format(new Date(starttime));
-        return datetime;
-    }
 
 
     @Override
@@ -87,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvAudioPlay.setOnClickListener((v) -> {
             if (audioTrackUtil != null) {
-                audioTrackUtil.play(PathUtils.getExternalAppAlarmsPath() + File.separator +"20180928235408.pcm");
+                audioTrackUtil.play(PathUtils.getExternalAppAlarmsPath() + File.separator +"20181010224512.pcm");
             }
         });
 

@@ -125,15 +125,17 @@ public class AudioTrackUtil {
                                 handlerTimer.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        currentTime = currentTime + 1;
-                                        if (timeInterface != null) {
-                                            timeInterface.showTime(currentTime);
-                                        }
                                         isTimeStart = true;
+
+                                        if (!isFinish) {
+                                            currentTime = currentTime + 1;
+                                            if (timeInterface != null) {
+                                                timeInterface.showTime(currentTime);
+                                            }
+                                        }
                                     }
                                 }, 1000);
                             }
-
 
                             audioTrack.write(audiodata, 0, audiodata.length);
                         } else {
