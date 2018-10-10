@@ -2,7 +2,6 @@ package com.yuntian.mediademo.audio;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
-import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.os.Handler;
 import android.text.TextUtils;

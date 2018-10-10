@@ -1,7 +1,5 @@
 package com.yuntian.mediademo.audio;
 
-import android.media.AudioFormat;
-import android.media.AudioRecord;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
